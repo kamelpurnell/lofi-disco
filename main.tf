@@ -35,7 +35,7 @@ resource "aws_instance" "default" {
   ami                    = "ami-021acbdb89706aa89"
   count                  = 1
   key_name               = "terraform"
-  vpc_security_group_ids = [aws_security_group.default.id]
+  vpc_security_group_ids = [aws_security_group.terraform-default-sg.id]
   source_dest_check      = false
   instance_type          = "t2.micro"
 
