@@ -11,21 +11,6 @@ terraform {
 provider "aws" {
   region = "us-east-1"
 }
-
-# Create EC2 instance
-resource "aws_instance" "default" {
-  ami                    = "ami-021acbdb89706aa89"
-  count                  = 1
-  key_name               = "terraform"
-  vpc_security_group_ids = [aws_security_group.default.id]
-  source_dest_check      = false
-  instance_type          = "t2.micro"
-
-  tags = {
-    Name = "terraform-default"
-  }
-}
-
 # Create Security Group for EC2
 resource "aws_security_group" "default" {
   name = "terraform-default-sg"
@@ -45,3 +30,18 @@ resource "aws_security_group" "default" {
   }
 
 }
+# Create EC2 instance
+resource "aws_instance" "default" {
+  ami                    = "ami-021acbdb89706aa89"
+  count                  = 1
+  key_name               = "terraform"
+  vpc_security_group_ids = [aws_security_group.default.id]
+  source_dest_check      = false
+  instance_type          = "t2.micro"
+
+  tags = {
+    Name = "terraform-default"
+  }
+}
+
+
